@@ -389,6 +389,28 @@ function http_digest_prompt($realm = '')
 
 
 /**
+ *	check if the file is an animated gif
+ *
+ *	@param string $f filename
+ *	@return true if animated gif, false if not
+ */
+function is_animated_gif($f)
+{
+	// code based on http://php.net/manual/en/function.imagecreatefromgif.php
+	if(!($fh = @fopen($f, 'rb'))) {
+		return false;
+	}
+	$cnt = 0;
+	while(!feof($fh) && $cnt < 2) {
+		$chunk = fread($fh, 1024 * 100);
+		$cnt += preg_match_all('#\x00\x21\xF9\x04.{4}\x00(\x2C|\x21)#s', $chunk, $matches);
+	}
+	fclose($fh);
+	return (1 < $cnt);
+}
+
+
+/**
  *	check if a string is a url
  *
  *	@param string $s

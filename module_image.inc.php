@@ -421,10 +421,15 @@ function image_resize($args)
 		$orig = @imagecreatefrompng($fn);
 		$dest_ext = 'png';
 	} elseif ($obj['image-file-mime'] == 'image/gif' || $ext == 'gif') {
-		$orig = @imagecreatefromgif($fn);
-		// save gifs as png
-		// TODO (later): check for animated gif (see php.net/manual/en/function.imagecreatefromgif.php)
-		$dest_ext = 'png';
+		// check if animated gif
+		if (is_animated_gif($fn)) {
+			log_msg('debug', 'image_resize: animated gif, not resizing');
+			return response(false);
+		} else {
+			$orig = @imagecreatefromgif($fn);
+			// save gifs as png
+			$dest_ext = 'png';
+		}
 	} else {
 		return response('Unsupported source file format '.quot($obj['image-file']), 500);
 	}
