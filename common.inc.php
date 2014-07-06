@@ -57,7 +57,7 @@ function cache_output($category, $name, $out)
 	// save file
 	$f .= '/'.$name;
 	$m = umask(0111);
-	if (!file_put_contents($f, $out)) {
+	if (!@file_put_contents($f, $out)) {
 		umask($m);
 		log_msg('error', 'common: error writing cache file '.quot($f));
 		return false;
