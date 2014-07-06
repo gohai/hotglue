@@ -514,7 +514,7 @@ function serve_file($fn, $dl, $mime = '')
 		header('Content-Type: '.$mime);
 	}
 	header('Content-Length: '.$size);
-	flush();
+	ob_clean();
 	@readfile($fn);
 	die();
 }
