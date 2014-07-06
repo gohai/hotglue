@@ -368,7 +368,7 @@ function image_resize($args)
 		return response('Original dimensions are not available', 500);
 	}
 	// set pagename
-	$pn = array_shift(expl('.', $obj['name']));
+	$pn = @array_shift(expl('.', $obj['name']));
 	
 	// resizing might not be necessary at all
 	if (!empty($obj['image-resized-file']) && @intval($obj['image-resized-width']) == $width && @intval($obj['image-resized-height'] == $height)) {
@@ -500,7 +500,7 @@ function image_save_state($args)
 	$elem = $args['elem'];
 	$obj = $args['obj'];
 	// only take responsibility for the element when we are its main class
-	if (array_shift(elem_classes($elem)) != 'image') {
+	if (@array_shift(elem_classes($elem)) != 'image') {
 		return false;
 	}
 	
@@ -545,7 +545,7 @@ function image_serve_resource($args)
 	}
 	// we don't have to care about symlinks here as they are being resolved 
 	// before this hook is called
-	$pn = array_shift(expl('.', $obj['name']));
+	$pn = @array_shift(expl('.', $obj['name']));
 	
 	if (!empty($obj['image-resized-file']) && !$args['dl']) {
 		// we have a resized file and don't want to download the original
@@ -612,8 +612,8 @@ function image_snapshot_symlink($args)
 	// shared directory in page a to the one on page b, this happens in this 
 	// hook
 	
-	$dest_dir = CONTENT_DIR.'/'.array_shift(expl('.', $obj['name'])).'/shared';
-	$src_dir = CONTENT_DIR.'/'.array_shift(expl('.', $args['origin'])).'/shared';
+	$dest_dir = CONTENT_DIR.'/'.@array_shift(expl('.', $obj['name'])).'/shared';
+	$src_dir = CONTENT_DIR.'/'.@array_shift(expl('.', $args['origin'])).'/shared';
 	
 	// we do this for image-file and image-resized-file
 	// .. to add a bit of complexity ;)

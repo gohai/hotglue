@@ -412,7 +412,7 @@ function text_save_state($args)
 {
 	$elem = $args['elem'];
 	$obj = $args['obj'];
-	if (array_shift(elem_classes($elem)) != 'text') {
+	if (@array_shift(elem_classes($elem)) != 'text') {
 		return false;
 	}
 	
