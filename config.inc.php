@@ -52,7 +52,9 @@
 @define('PAGES_NEED_AUTH', true);			// page browser needs authentication
 @define('REVISIONS_NEED_AUTH', true);		// revisions browser needs authentication
 @define('TEXT_AUTO_BR', true);				// automatically add <br> elements for newlines
+@define('TEXT_USE_WEB_FONTS', false);		// (experimental) exclusively use Google web fonts
 @define('TEXT_USE_WOFF_FONTS', false);		// (experimental) offer woff webfonts (supported by Firefox 3.6+, Chrome 5.0+, Internet Explorer 9)
+@define('TEXT_WEB_FONTS', '"PT Sans" "PT Sans Narrow" "PT Serif" "PT Mono" "Abril Fatface" "Cardo" "Gentium Book Basic" "Gravitas One" "Lato" "Merriweather" "Old Standard TT" "Open Sans" "Playfair Display" "Vollkorn"');		// list of Google web fonts to use
 @define('VIDEO_START_ON_CLICK', true);		// start video on click when autoplay is off
 
 

@@ -23,6 +23,30 @@ require_once('util.inc.php');
 
 
 /**
+ *	include the css for a Google web font
+ *
+ *	@param string $web_font web font to include
+ *	@return true if successful, false if not
+ */
+function _include_web_font($web_font)
+{
+	static $already_included = array();
+
+	if (in_array($web_font, $already_included)) {
+		return false;
+	}
+
+	if (empty($_SERVER['HTTPS'])) {
+		html_add_css('http://fonts.googleapis.com/css?family='.urlencode($web_font));
+	} else {
+		html_add_css('https://fonts.googleapis.com/css?family='.urlencode($web_font));
+	}
+	$already_included[] = $web_font;
+	return true;
+}
+
+
+/**
  *	include the font-face css for a woff-font
  *
  *	@param string $font_family font family to include
@@ -79,6 +103,17 @@ function _include_woff_font($font_family, $style_to_include = '')
 
 
 /**
+ *	return if the font is a Google web font
+ *	@param string $font font name
+ *	@param true if a web font, false if not
+ */
+function _is_web_font($font)
+{
+	return in_array($font, _web_fonts());
+}
+
+
+/**
  *	return if the font-family includes a woff-font
  *
  *	@param string $font_family font family
@@ -118,6 +153,30 @@ function _text_render_content($s, $name)
 	// resolve any relative urls
 	$s = resolve_relative_urls($s);
 	return $s;
+}
+
+
+/**
+ *	return an array of all available Google web fonts
+ *
+ *	@return array
+ */
+function _web_fonts() {
+	$web_fonts = array();
+	$s = TEXT_WEB_FONTS;
+	$end = -1;
+	do {
+		$start = strpos($s, '"', $end+1);
+		if ($start === false) {
+			break;
+		}
+		$end = strpos($s, '"', $start+1);
+		if ($end === false) {
+			break;
+		}
+		$web_fonts[] = substr($s, $start+1, $end-$start-1);
+	} while (true);
+	return $web_fonts;
 }
 
 
@@ -308,6 +367,13 @@ function text_alter_render_early($args)
 	// font-family
 	if (!empty($obj['text-font-family'])) {
 		elem_css($elem, 'font-family', $obj['text-font-family']);
+		if (TEXT_USE_WEB_FONTS) {
+			// web fonts use a single slash
+			$font = str_replace('\'', '', $obj['text-font-family']);
+			if (_is_web_font($font)) {
+				_include_web_font($font);
+			}
+		}
 		if (TEXT_USE_WOFF_FONTS) {
 			if (_is_woff_font($obj['text-font-family'])) {
 				// include all styles of the font because of inline html 
@@ -390,14 +456,26 @@ function text_render_page_early($args)
 			html_add_js(base_url().'modules/text/text-edit.js');
 		}
 		html_add_css(base_url().'modules/text/text-edit.css');
+		if (!TEXT_USE_WEB_FONTS) {
+			html_add_css(base_url().'modules/text/text-fonts.css');
+		}
 		html_add_js_var('$.glue.conf.text.auto_br', TEXT_AUTO_BR);
-		
+
+		if (TEXT_USE_WEB_FONTS) {
+			foreach (_web_fonts() as $web_font) {
+				_include_web_font($web_font);
+				$rule = '.glue-font-web-'.urlencode($web_font).' {'.nl();
+				$rule .= tab().'font-family: \''.$web_font.'\';'.nl();
+				$rule .= '}';
+				html_add_css_inline($rule, 6);
+			}
+		}
 		if (TEXT_USE_WOFF_FONTS) {
 			$woff_fonts = _woff_fonts();
 			foreach ($woff_fonts as $font=>$styles) {
 				_include_woff_font($font);
 				// TODO (later): check css encoding
-				$rule = '.glue-font-woff-'.$font.' {'.nl();
+				$rule = '.glue-font-web-'.$font.' {'.nl();
 				// we use single quotes as they don't clash with inline styles
 				$rule .= tab().'font-family: \''.$font.'\';'.nl();
 				$rule .= '}';

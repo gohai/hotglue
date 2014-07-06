@@ -43,10 +43,10 @@ $.glue.text = function()
 	};
 	
 	return {
-		get_fonts: function(fonts, woff_fonts) {
+		get_fonts: function(fonts, web_fonts) {
 			// get all fonts
 			//fonts = [];
-			//woff_fonts = [];
+			//web_fonts = [];
 			for (var i=0; i < document.styleSheets.length; i++) {
 				var sheet = document.styleSheets[i];
 				for (var j=0; sheet.cssRules && j < sheet.cssRules.length; j++) {
@@ -77,9 +77,9 @@ $.glue.text = function()
 						end = tmp-1;
 					}
 					fonts.push($.trim(text.substr(start, end-start+1)));
-					if (rule.selectorText.substr(0, 15) == '.glue-font-woff') {
-						// also add to woff_fonts
-						woff_fonts.push($.trim(text.substr(start, end-start+1)));
+					if (rule.selectorText.substr(0, 14) == '.glue-font-web') {
+						// also add to web_fonts
+						web_fonts.push($.trim(text.substr(start, end-start+1)));
 					}
 				}
 			}
@@ -387,20 +387,20 @@ $(document).ready(function() {
 	$(elem).bind('glue-menu-activate', function(e) {
 		var obj = $(this).data('owner');
 		var fonts = [];
-		var woff_fonts = [];
-		$.glue.text.get_fonts(fonts, woff_fonts);
-		// check if current font is a woff-font
+		var web_fonts = [];
+		$.glue.text.get_fonts(fonts, web_fonts);
+		// check if current font is a web font
 		var cur = $(obj).css('font-family');
-		for (i=0; i < woff_fonts.length; i++) {
-			if (cur === woff_fonts[i]) {
-				// current font is a woff-font
+		for (i=0; i < web_fonts.length; i++) {
+			if (cur === web_fonts[i]) {
+				// current font is a web font
 				$('#glue-contextmenu-text-font-face').addClass('glue-text-font-face');
 				$('#glue-contextmenu-text-font-face').removeClass('glue-text-font-family');
-				$('#glue-contextmenu-text-font-face').attr('title', 'this is a WOFF web-font ('+cur+') - while only supported on the latest browser versions, this text should look similar across different browsers and operating systems supporting WOFF');
+				$('#glue-contextmenu-text-font-face').attr('title', cur+' (web font)');
 				return;
 			}
 		}
-		// not a woff-font
+		// not a web font
 		$('#glue-contextmenu-text-font-face').removeClass('glue-text-font-face');
 		$('#glue-contextmenu-text-font-face').addClass('glue-text-font-family');
 		$('#glue-contextmenu-text-font-face').attr('title', 'change typeface (click to cycle through available typefaces)');
@@ -408,11 +408,11 @@ $(document).ready(function() {
 	$(elem).bind('click', function(e) {
 		var obj = $(this).data('owner');
 		var fonts = [];
-		var woff_fonts = [];
-		$.glue.text.get_fonts(fonts, woff_fonts);
+		var web_fonts = [];
+		$.glue.text.get_fonts(fonts, web_fonts);
 		// DEBUG
 		//console.log(fonts);
-		//console.log(woff_fonts);
+		//console.log(web_fonts);
 		// search for current font
 		var cur = $(obj).css('font-family');
 		var n = false;
@@ -433,18 +433,18 @@ $(document).ready(function() {
 		}
 		if (n !== false) {
 			$(obj).css('font-family', fonts[n]);
-			// check if woff-font
-			var is_woff = false;
-			for (var i=0; i < woff_fonts.length; i++) {
-				if (woff_fonts[i] == fonts[n]) {
-					is_woff = true;
+			// check if web font
+			var is_web_font = false;
+			for (var i=0; i < web_fonts.length; i++) {
+				if (web_fonts[i] == fonts[n]) {
+					is_web_font = true;
 					break;
 				}
 			}
-			if (is_woff) {
+			if (is_web_font) {
 				$(this).addClass('glue-text-font-face');
 				$(this).removeClass('glue-text-font-family');
-				$(this).attr('title', 'this is a WOFF web-font ('+fonts[n]+') - while only supported on the latest browser versions, this text should look similar across different browsers and operating systems supporting WOFF');
+				$(this).attr('title', fonts[n]+' (web font)');
 			} else {
 				$(this).removeClass('glue-text-font-face');
 				$(this).addClass('glue-text-font-family');
