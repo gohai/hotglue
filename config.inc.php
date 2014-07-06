@@ -44,7 +44,7 @@
 @define('IMAGE_RESIZING', true);			// resize uploaded images on the server (needs gd installed)
 @define('IMAGE_UPLOAD_RESIZE_LARGER', '120%');	// automatically resize uploaded image when larger than n% of window width or height (set to 0% to disable)
 @define('IMAGE_UPLOAD_RESIZE_TO', '80%');		// target size in n% of window width or height
-@define('OBJECT_DEFAULT_COLORS', '#61b9cf #ff00ff #ffff00');		// default colors for new objects (space-separated string)
+@define('OBJECT_DEFAULT_COLORS', '#2a2c39 #ef4723 #0ac5f4');		// default colors for new objects (space-separated string)
 @define('PAGE_DEFAULT_GRID_X', 50);			// default grid x spacing in px
 @define('PAGE_DEFAULT_GRID_Y', 50);			// default grid y spacing in px
 @define('PAGE_GUIDES_X', '');				// show a grid line after n horizontal px (space-separated string)
