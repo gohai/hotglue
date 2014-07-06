@@ -483,6 +483,16 @@ function text_render_page_early($args)
 			}
 		}
 	}
+	if (TEXT_USE_WEB_FONTS) {
+		// chance the default font
+		$web_fonts = _web_fonts();
+		if (0 < count($web_fonts)) {
+			$rule = '.text {'.nl();
+			$rule .= tab().'font-family: \''.$web_fonts[0].'\';'.nl();
+			$rule .= '}';
+			html_add_css_inline($rule, 7);
+		}
+	}
 }
 
 
