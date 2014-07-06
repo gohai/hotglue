@@ -38,8 +38,8 @@ function webvideo_alter_render_early($args)
 			$src .= '&autoplay=1';
 		}
 		if (isset($obj['webvideo-loop']) && $obj['webvideo-loop'] == 'loop') {
-			// this is not yet supported by the new youtube embed player
 			$src .= '&loop=1';
+			$src .= '&playlist='.$obj['webvideo-id'];
 		}
 		elem_attr($i, 'src', $src);
 		elem_add_class($i, 'youtube-player');		
