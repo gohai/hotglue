@@ -267,6 +267,12 @@ $(document).ready(function() {
 			if ($.glue.conf.object.default_colors) {
 				var rand = Math.floor(Math.random()*$.glue.conf.object.default_colors.length);
 				$(elem).css('background-color', $.glue.conf.object.default_colors[rand]);
+				// make the text color white for dark backgrounds
+				$.color.setColor($.glue.conf.object.default_colors[rand]);
+				var hsv = $.color.getHSV();
+				if (hsv.v < 50) {
+					$(elem).css('color', 'rgb(255, 255, 255)');
+				}
 			}
 			$('body').append(elem);
 			// make width and height explicit
