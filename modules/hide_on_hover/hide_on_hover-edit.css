@@ -1,6 +1,6 @@
 #glue-contextmenu-object-hide_on_hover {
 	/* overwrite the default greenish hue for .glue-menu-enabled */
-	/*background-color: transparent;*/
+	background-color: transparent;
 }
 
 #glue-contextmenu-object-hide_on_hover.glue-menu-disabled {
