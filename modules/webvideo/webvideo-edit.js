@@ -118,7 +118,7 @@ $(document).ready(function() {
 		if ($(this).hasClass('glue-menu-enabled')) {
 			$(this).removeClass('glue-menu-enabled');
 			$(this).addClass('glue-menu-disabled');
-			$(obj).data('webvideo-autoplay', '');
+			$(obj).data('webvideo-autoplay', 'autoplay');
 			$.glue.backend({ method: 'glue.object_remove_attr', name: $(obj).attr('id'), attr: 'webvideo-autoplay' });
 		} else if ($(this).hasClass('glue-menu-disabled')) {
 			$(this).addClass('glue-menu-enabled');
