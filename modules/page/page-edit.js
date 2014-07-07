@@ -39,6 +39,10 @@ $(document).ready(function() {
 	$(elem).bind('click', function(e) {
 		var old_pn = $.glue.page.split('.').shift();
 		var new_pn = prompt('Change the page URL', old_pn);
+		// prevent spaces in urls
+		if (new_pn != null) {
+			new_pn = new_pn.split(' ').join('-');
+		}
 		if (new_pn != null && new_pn != old_pn) {
 			// check if the current page is also the starting page
 			$.glue.backend({ method: 'glue.get_startpage' }, function(data) {
@@ -108,6 +112,8 @@ $(document).ready(function() {
 		if (pn === null) {
 			return;
 		}
+		// prevent spaces in urls
+		pn = pn.split(' ').join('-');
 		$.glue.backend({ method: 'glue.create_page', page: pn+'.head' }, function(data) {
 			// redirect to newly created page
 			window.location = $.glue.base_url+'?'+pn+'/edit';

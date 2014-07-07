@@ -38,6 +38,10 @@ $(document).ready(function() {
 		var entry = $(this).parents('.page_browser_entry');
 		var old = $(entry).attr('id');
 		var pn = prompt('Change the page URL', old);
+		// prevent spaces in urls
+		if (pn != null) {
+			pn = pn.split(' ').join('-');
+		}
 		if (pn != null && pn != old) {
 			$.glue.backend({ method: 'glue.rename_page', 'old': old, 'new': pn }, function(data) {
 				$(entry).attr('id', pn);

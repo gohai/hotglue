@@ -658,6 +658,9 @@ function valid_pagename($s)
 		// same name as existing file names in the root directory
 		// this is an issue when using the RewriteRule
 		return false;
+	} else if (strpos($s, ' ') !== false) {
+		// this causes problems for the frontend (spaces in ids)
+		return false;
 	} else {
 		return true;
 	}
