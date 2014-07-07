@@ -281,12 +281,18 @@ $(document).ready(function() {
 			}
 		}, function(x, y) {
 			if (Math.abs(x) < 10 && Math.abs(y) < 10) {
-				if ($.glue.grid.mode()) {
-					$.glue.grid.mode(0);
-				} else {
+				if (!$.glue.grid.mode()) {
 					$.glue.grid.mode(1);
+					$.glue.grid.update();
+				} else if (e.shiftKey) {
+					// reset to default grid
+					$.glue.grid.x($.glue.conf.page.default_grid_x);
+					$.glue.grid.y($.glue.conf.page.default_grid_y);
+					$.glue.grid.update(true);
+				} else {
+					$.glue.grid.mode(0);
+					$.glue.grid.update();
 				}
-				$.glue.grid.update();
 			}
 			// update backend
 			$.glue.backend({ method: 'page.set_grid', 'x': $.glue.grid.x(), 'y': $.glue.grid.y() });
