@@ -313,7 +313,7 @@ function invoke_controller($args)
 			// header, but as a first step..
 			if (!empty($_SERVER['HTTP_REFERER']) && $match['func'] != 'controller_edit') {
 				$bu = base_url();
-				if (urldecode(substr($_SERVER['HTTP_REFERER']), 0, strlen($bu)) != $bu) {
+				if (substr(urldecode($_SERVER['HTTP_REFERER']), 0, strlen($bu)) != $bu) {
 					log_msg('warn', 'controller: possible xsrf detected, referer is '.quot($_SERVER['HTTP_REFERER']).', arguments '.var_dump_inl($args));
 					hotglue_error(400);
 				}
