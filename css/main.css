@@ -12,3 +12,7 @@ a, a:link, a:visited, a:active, a:hover {
 	color: inherit;
 	text-decoration: inherit;
 }
+
+.text {
+	font-size: 16px;
+}

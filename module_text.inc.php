@@ -491,6 +491,7 @@ function text_render_page_early($args)
 			$rule .= tab().'font-family: \''.$web_fonts[0].'\';'.nl();
 			$rule .= '}';
 			html_add_css_inline($rule, 7);
+			_include_web_font($web_fonts[0]);
 		}
 	}
 }
