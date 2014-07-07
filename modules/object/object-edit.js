@@ -109,7 +109,7 @@ $(document).ready(function() {
 				if (data['#data']['object-link'] !== undefined) {
 					old_link = data['#data']['object-link'];
 				}
-				var link = prompt('Enter link (e.g. http://disney.com/, somepage, #someanchor)', old_link);
+				var link = prompt('Enter the name of the page you want to link to (e.g. anotherpage). You can also enter a full URL (e.g. http://disney.com/) or the name of another object on this page (with a prefixed hash symbol, e.g. #someobject).', old_link);
 				if (link === null || link == old_link) {
 					return;
 				}
@@ -117,6 +117,10 @@ $(document).ready(function() {
 					// delete link
 					$.glue.backend({ method: 'glue.object_remove_attr', name: $(obj).attr('id'), attr: 'object-link' });
 				} else {
+					// make sure the link does not hardcode the base url
+					if (link.substring(0, $.glue.base_url.length) == $.glue.base_url) {
+						link = link.substring($.glue.base_url.length);
+					}
 					// set link
 					$.glue.backend({ method: 'glue.update_object', name: $(obj).attr('id'), 'object-link': link });
 				}
