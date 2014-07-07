@@ -311,7 +311,7 @@ function invoke_controller($args)
 			// forgery (xsrf)
 			// this is not really optimal, since proxies can filter the referer 
 			// header, but as a first step..
-			if (!empty($_SERVER['HTTP_REFERER'])) {
+			if (!empty($_SERVER['HTTP_REFERER']) && $match['func'] != 'controller_edit') {
 				$bu = base_url();
 				if (substr($_SERVER['HTTP_REFERER'], 0, strlen($bu)) != $bu) {
 					log_msg('warn', 'controller: possible xsrf detected, referer is '.quot($_SERVER['HTTP_REFERER']).', arguments '.var_dump_inl($args));
