@@ -105,7 +105,7 @@ if (isset($m['cross-origin']) && $m['cross-origin']) {
 	// otherwise check the referer to make xsrf harder
 	if (!empty($_SERVER['HTTP_REFERER'])) {
 		$bu = base_url();
-		if (substr($_SERVER['HTTP_REFERER'], 0, strlen($bu)) != $bu) {
+		if (substr(urldecode($_SERVER['HTTP_REFERER']), 0, strlen($bu)) != $bu) {
 			echo json_encode(response('Cross-origin requests not supported for this method', 400));
 			log_msg('warn', 'json: possible xsrf detected, referer is '.quot($_SERVER['HTTP_REFERER']).', arguments '.var_dump_inl($args));
 			die();
