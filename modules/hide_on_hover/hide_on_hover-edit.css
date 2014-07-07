@@ -1,0 +1,12 @@
+#glue-contextmenu-object-hide_on_hover {
+	/* overwrite the default greenish hue for .glue-menu-enabled */
+	/*background-color: transparent;*/
+}
+
+#glue-contextmenu-object-hide_on_hover.glue-menu-disabled {
+	background-image: url(hide_on_hover-off.png);
+}
+
+#glue-contextmenu-object-hide_on_hover.glue-menu-enabled {
+	background-image: url(hide_on_hover-on.png);
+}
