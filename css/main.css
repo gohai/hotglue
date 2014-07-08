@@ -17,3 +17,11 @@ a, a:link, a:visited, a:active, a:hover {
 	font-size: 16px;
 	line-height: 1.0em;
 }
+
+b {
+	font-weight: 700;
+}
+
+i {
+	font-style: italic;
+}
