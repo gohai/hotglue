@@ -146,6 +146,24 @@ function page_render_object($args)
 	if (isset($obj['page-title'])) {
 		html_title($obj['page-title']);
 	}
+	// manual width
+	if (isset($obj['page-width'])) {
+		if ($args['edit']) {
+			// show mask
+			$m = elem('div');
+			elem_attr($m, 'id', 'glue-page-mask');
+			elem_attr($m, 'title', 'manual width set (see "center content" in page menu)');
+			elem_add_class($m, 'glue-ui');
+			elem_css($m, 'left', $obj['page-width']);
+			body_append($m);
+		} else {
+			// center body in the middle of the browser window
+			$bdy = &body();
+			elem_css($bdy, 'position', 'relative');
+			elem_css($bdy, 'margin', '0 auto');
+			elem_css($bdy, 'width', $obj['page-width']);
+		}
+	}
 }
 
 

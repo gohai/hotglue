@@ -10,3 +10,10 @@
 #glue-menu-page-background-scroll.glue-menu-enabled {
 	background-image: url(page-background-scroll-on.png);
 }
+
+#glue-page-mask {
+	background-color: #000;
+	opacity: 0.2;
+	position: absolute;
+	z-index: 200;
+}

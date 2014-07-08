@@ -251,7 +251,7 @@ $(document).ready(function() {
 	$.glue.menu.register('page', elem);
 	
 	elem = $('<img src="'+$.glue.base_url+'modules/page/page-grid.png" width="32" height="32">');
-	// also change tilte below
+	// also change title below
 	$(elem).attr('title', 'show/hide grid or change grid size by dragging ('+$.glue.grid.x()+'x'+$.glue.grid.y()+')');
 	$(elem).bind('mousedown', function(e) {
 		var that = this;
@@ -303,5 +303,47 @@ $(document).ready(function() {
 		});
 		return false;
 	});
+
+	$.glue.menu.register('page', elem);
+
+	elem = $('<img src="'+$.glue.base_url+'modules/page/page-width.png" width="32" height="32">');
+	// also change title below
+	$(elem).attr('title', 'center content');
+	$(elem).bind('click', function(e) {
+		var old_val;
+		if ($('#glue-page-mask').length) {
+			old_val = $('#glue-page-mask').css('left');
+		} else {
+			old_val = '';
+		}
+		var val = prompt('Set content width (e.g. 1000px, leave empty to disable)', old_val);
+		if (val !== null && val !== old_val) {
+			if (val == '') {
+				$('#glue-page-mask').remove();
+				$.glue.backend({ method: 'glue.object_remove_attr', name: $.glue.page+'.page', attr: 'page-width' });
+			} else if (val.substr(-2) == 'px') {
+				if (old_val === '') {
+					$('body').append('<div id="glue-page-mask" class="glue-ui" title=\'manual width set (see "center content" in page menu)\'></div>');
+				}
+				$('#glue-page-mask').css('left', val);
+				// resize page mask
+				$('#glue-page-mask').css('width', ($(window).width()-$('#glue-page-mask').position().left)+'px');
+				$('#glue-page-mask').css('height', $(document).height()+'px');
+				$.glue.backend({ method: 'glue.update_object', name: $.glue.page+'.page', 'page-width': val });
+			}
+		}
+		// close menu
+		$.glue.menu.hide();
+	});
 	$.glue.menu.register('page', elem, 13);
+
+	// resize page mask on load, resize
+	if ($('#glue-page-mask').length) {
+		$('#glue-page-mask').css('width', ($(window).width()-$('#glue-page-mask').position().left)+'px');
+		$('#glue-page-mask').css('height', $(document).height()+'px');
+		$(window).bind('resize', function(e) {
+			$('#glue-page-mask').css('width', ($(window).width()-$('#glue-page-mask').position().left)+'px');
+			$('#glue-page-mask').css('height', $(document).height()+'px');
+		});
+	}
 });
