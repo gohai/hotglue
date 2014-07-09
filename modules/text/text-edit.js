@@ -49,6 +49,11 @@ $.glue.text = function()
 			//web_fonts = [];
 			for (var i=0; i < document.styleSheets.length; i++) {
 				var sheet = document.styleSheets[i];
+				// prevent a security exception on Firefox 30 when accessing a remote CSS stylesheet
+				var host = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+				if (sheet.href && sheet.href.substring(0, host.length) != host) {
+					continue;
+				}
 				for (var j=0; sheet.cssRules && j < sheet.cssRules.length; j++) {
 					var rule = sheet.cssRules[j];
 					if (!rule.selectorText) {
