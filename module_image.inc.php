@@ -430,6 +430,8 @@ function image_resize($args)
 			// save gifs as png
 			$dest_ext = 'png';
 		}
+	} else if ($obj['image-file-mime'] == 'image/svg+xml' || $ext == 'svg') {
+		return response(false);
 	} else {
 		return response('Unsupported source file format '.quot($obj['image-file']), 500);
 	}
@@ -662,7 +664,7 @@ function image_snapshot_symlink($args)
 function image_upload($args)
 {
 	// check if supported file
-	if (!in_array($args['mime'], array('image/jpeg', 'image/png', 'image/gif')) || ($args['mime'] == '' && !in_array(filext($args['file']), array('jpg', 'jpeg', 'png', 'gif')))) {
+	if (!in_array($args['mime'], array('image/jpeg', 'image/png', 'image/gif', 'image/svg+xml')) || ($args['mime'] == '' && !in_array(filext($args['file']), array('jpg', 'jpeg', 'png', 'gif', 'svg')))) {
 		return false;
 	}
 	
@@ -680,7 +682,7 @@ function image_upload($args)
 	$obj['image-file'] = $args['file'];
 	$obj['image-file-mime'] = $args['mime'];
 	// save original-{width,height} if we can calculate it
-	if (_gd_available()) {
+	if (_gd_available() && ($args['mime'] != 'image/svg+xml' || ($args['mime'] == '' && filext($args['file']) != 'svg'))) {
 		$a = expl('.', $args['page']);
 		$size = _gd_get_imagesize(CONTENT_DIR.'/'.$a[0].'/shared/'.$obj['image-file']);
 		$obj['image-file-width'] = $size[0];

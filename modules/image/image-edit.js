@@ -143,21 +143,29 @@ $('.image').live('glue-resizestop', function(e) {
 $('.image').live('glue-upload-dynamic-late', function(e, loaded) {
 	var img = loaded;
 	if ($(img).is('img')) {
-		// we should have the exact dimensions of the image by now
-		// resize object
-		$(this).css('width', $(img).width()+'px');
-		$(this).css('height', $(img).height()+'px');
-		// update object file
-		$.glue.backend({ method: 'glue.update_object', name: $(this).attr('id'), 'image-file-width': $(img).width(), 'image-file-height': $(img).height() });
-		// set the defaults
-		$(this).css('background-image', 'url('+$(img).attr('src')+')');
-		$(this).css('background-repeat', 'no-repeat');
-		$(this).css('background-size', '100% 100%');
-		$(this).css('-moz-background-size', '100% 100%');
-		// remove the img
-		$(img).remove();
-		// automatically resize
-		$.glue.image.autoresize(this);
+		if ($(img).width() == 0) {
+			// we don't have a size, should be a svg
+			$(this).css('width', '100px');
+			$(this).css('height', '100px');
+			$(img).css('width', '100%');
+			$(img).css('height', '100%');
+		} else {
+			// we have a size, should be an image
+			// resize object
+			$(this).css('width', $(img).width()+'px');
+			$(this).css('height', $(img).height()+'px');
+			// update object file
+			$.glue.backend({ method: 'glue.update_object', name: $(this).attr('id'), 'image-file-width': $(img).width(), 'image-file-height': $(img).height() });
+			// set the defaults
+			$(this).css('background-image', 'url('+$(img).attr('src')+')');
+			$(this).css('background-repeat', 'no-repeat');
+			$(this).css('background-size', '100% 100%');
+			$(this).css('-moz-background-size', '100% 100%');
+			// remove the img
+			$(img).remove();
+			// automatically resize
+			$.glue.image.autoresize(this);
+		}
 	}
 });
 
