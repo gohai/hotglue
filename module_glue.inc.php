@@ -687,7 +687,13 @@ function object_remove_attr($args)
 	if (!isset($args['attr'])) {
 		return response('Required argument "attr" missing', 400);
 	}
-	
+
+	// DEBUG
+	if (empty($args['name'])) {
+		log_msg('error', 'save_state: empty name, '.print_r($args, true));
+		return response(true);
+	}
+
 	// LOCK
 	// TODO (later): $args['name'] might not be set
 	$_l = _obj_lock($args['name'], LOCK_TIME);
@@ -1157,7 +1163,13 @@ function save_state($args)
 	} elseif (!object_exists(elem_attr($elem, 'id'))) {
 		return response('Error saving state as object does not exist', 404);
 	}
-	
+
+	// DEBUG
+	if (empty($args['name'])) {
+		log_msg('error', 'save_state: empty name, '.print_r($args, true));
+		return response(true);
+	}
+
 	// LOCK
 	$L = _obj_lock(elem_attr($elem, 'id'), LOCK_TIME);
 	if ($L === false) {
