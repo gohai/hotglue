@@ -46,7 +46,7 @@ function hide_on_hover_alter_render_late($args)
 			// add a global event handler
 			$script = '<script type="text/javascript">'.nl();
 			$script .= tab().'$(document).ready(function() {'.nl();
-			$script .= tab(2).'$(document).bind(\'mousemove\', function(e) { var d = $(\'#'.str_replace('.', '\\\\.', $obj['name']).'\'); var o = d.offset(); if (o.left <= e.pageX && e.pageX <= o.left+d.width() && o.top <= e.pageY && e.pageY <= o.top+d.height()) { d.css(\'visibility\', \'hidden\'); } else { d.css(\'visibility\', \'visible\') }; });'.nl();
+			$script .= tab(2).'$(document).bind(\'mousemove\', function(e) { var d = $(\'#'.str_replace('.', '\\\\.', $obj['name']).'\'); var o = d.offset(); if (o.left <= e.pageX && e.pageX <= o.left+d.outerWidth() && o.top <= e.pageY && e.pageY <= o.top+d.outerHeight()) { d.css(\'visibility\', \'hidden\'); } else { d.css(\'visibility\', \'visible\') }; });'.nl();
 			$script .= tab().'});'.nl();
 			$script .= '</script>'.nl();
 			$html = $html.$script;
