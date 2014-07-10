@@ -173,11 +173,39 @@ $(document).ready(function() {
 	};
 	$.glue.upload.button(elem, { method: 'glue.upload_files', page: $.glue.page, preferred_module: 'page' }, upload);
 	$.glue.menu.register('page', elem);
-	
+
+	/* TODO: new icon needed */
+	elem = $('<img id="glue-menu-page-background-repeat" src="'+$.glue.base_url+'modules/image/image-tile.png" alt="btn" title="toggle background image tiling" width="32" height="32">');
+	$(elem).bind('glue-menu-activate', function(e) {
+		var elem = $('#glue-menu-page-background-repeat');
+		if ($('html').css('background-image').length != 0 && $('html').css('background-image') != 'none') {
+			$(elem).css('display', 'block');
+		} else {
+			$(elem).css('display', 'none');
+		}
+	});
+	$(elem).bind('click', function(e) {
+		if ($('html').css('background-repeat') == 'no-repeat') {
+			$('html').css('background-repeat', 'repeat');
+			$('html').css('background-size', 'auto');
+			$('html').css('background-attachment', 'scroll');
+			$.glue.backend({ method: 'glue.update_object', name: $.glue.page+'.page', 'page-background-repeat': 'repeat', 'page-background-attachment': 'scroll' });
+		} else {
+			$('html').css('background-repeat', 'no-repeat');
+			$('html').css('background-size', 'cover');
+			$('html').css('background-attachment', 'fixed');
+			$('html').css('background-position', '');
+			$.glue.backend({ method: 'glue.update_object', name: $.glue.page+'.page', 'page-background-repeat': 'no-repeat', 'page-background-attachment': 'fixed' });
+			$.glue.backend({ method: 'glue.object_remove_attr', name: $.glue.page+'.page', attr: 'page-background-image-position' });
+		}
+		$.glue.menu.hide();
+	});
+	$.glue.menu.register('page', elem);
+
 	elem = $('<div id="glue-menu-page-background-scroll" alt="btn" style="height: 32px; width: 32px;" title="toggle between having the background image fixed or having it scroll with the rest of the page">');
 	$(elem).bind('glue-menu-activate', function(e) {
 		var elem = $('#glue-menu-page-background-scroll');
-		if ($('html').css('background-image').length != 0 && $('html').css('background-image') != 'none') {
+		if ($('html').css('background-image').length != 0 && $('html').css('background-image') != 'none' && $('html').css('background-repeat') != 'no-repeat') {
 			if ($('html').css('background-attachment') == 'fixed') {
 				$(elem).removeClass('glue-menu-enabled');
 				$(elem).addClass('glue-menu-disabled');
@@ -205,10 +233,10 @@ $(document).ready(function() {
 	});
 	$.glue.menu.register('page', elem);
 	
-	elem = $('<img src="'+$.glue.base_url+'modules/page/page-background-image-pos.png" alt="btn" title="adjust background image selection" width="32" height="32">');
+	elem = $('<img id="glue-menu-page-background-image-pos" src="'+$.glue.base_url+'modules/page/page-background-image-pos.png" alt="btn" title="adjust background image selection" width="32" height="32">');
 	$(elem).bind('glue-menu-activate', function(e) {
-		var elem = $('#glue-menu-page-background-scroll');
-		if ($('html').css('background-image').length != 0 && $('html').css('background-image') != 'none') {
+		var elem = $('#glue-menu-page-background-image-pos');
+		if ($('html').css('background-image').length != 0 && $('html').css('background-image') != 'none' && $('html').css('background-repeat') != 'no-repeat') {
 			$(elem).css('display', 'block');
 		} else {
 			$(elem).css('display', 'none');

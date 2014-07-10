@@ -142,6 +142,12 @@ function page_render_object($args)
 	if (!empty($obj['page-background-image-position'])) {
 		html_css('background-position', $obj['page-background-image-position']);
 	}
+	// background-repeat
+	if (isset($obj['page-background-repeat']) && $obj['page-background-repeat'] == 'no-repeat') {
+		html_css('background-repeat', 'no-repeat');
+		html_css('background-size', 'cover');
+	}
+
 	// set the html title
 	if (isset($obj['page-title'])) {
 		html_title($obj['page-title']);
