@@ -690,7 +690,7 @@ function object_remove_attr($args)
 
 	// DEBUG
 	if (empty($args['name'])) {
-		log_msg('error', 'save_state: empty name, '.print_r($args, true));
+		log_msg('error', 'unable to lock: '.print_r($args, true));
 		return response(true);
 	}
 
@@ -698,7 +698,8 @@ function object_remove_attr($args)
 	// TODO (later): $args['name'] might not be set
 	$_l = _obj_lock($args['name'], LOCK_TIME);
 	if ($_l === false) {
-		return response('Could not acquire lock to '.quot($args['name']).' in '.LOCK_TIME.'ms', 500);
+		//return response('Could not acquire lock to '.quot($args['name']).' in '.LOCK_TIME.'ms', 500);
+		log_msg('error', 'Could not acquire lock to '.quot($args['name']).' in '.LOCK_TIME.'ms');
 	}
 	$obj = load_object($args);
 	if ($obj['#error']) {
@@ -1165,15 +1166,16 @@ function save_state($args)
 	}
 
 	// DEBUG
-	if (empty($args['name'])) {
-		log_msg('error', 'save_state: empty name, '.print_r($args, true));
+	if (empty(elem_attr($elem, 'id'))) {
+		log_msg('error', 'unable to lock: '.print_r($args, true));
 		return response(true);
 	}
 
 	// LOCK
 	$L = _obj_lock(elem_attr($elem, 'id'), LOCK_TIME);
 	if ($L === false) {
-		return response('Could not acquire lock to '.quot($args['name']).' in '.LOCK_TIME.'ms', 500);
+		//return response('Could not acquire lock to '.quot(elem_attr($elem, 'id')).' in '.LOCK_TIME.'ms', 500);
+		log_msg('error', 'Could not acquire lock to '.quot(elem_attr($elem, 'id')).' in '.LOCK_TIME.'ms');
 	}
 	$obj = load_object(array('name'=>elem_attr($elem, 'id')));
 	if ($obj['#error']) {
