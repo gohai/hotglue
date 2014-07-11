@@ -1166,7 +1166,7 @@ function save_state($args)
 	}
 
 	// DEBUG
-	if (empty(elem_attr($elem, 'id'))) {
+	if (is_null(elem_attr($elem, 'id'))) {
 		log_msg('error', 'unable to lock: '.print_r($args, true));
 		return response(true);
 	}
