@@ -18,7 +18,6 @@ function parallax_alter_render_early($args)
 		// add parallax for viewing only
 		if (!empty($obj['parallax-x']) || !empty($obj['parallax-y'])) {
 			elem_css($elem, 'position', 'fixed');
-			log_msg('error', 'foo');
 			return true;
 		}
 	}
