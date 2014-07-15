@@ -1282,6 +1282,15 @@ function snapshot($args)
 				log_msg('debug', 'snapshot: copied the content of symlink '.quot($args['page'].'.'.$f));
 			}
 			umask($m);
+			// make sure a shared directory exists at the destination
+			$d = CONTENT_DIR.'/'.$a[0].'/shared';
+			if (!is_dir($d)) {
+				$m = umask(0000);
+				if (!@mkdir($d, 0777)) {
+					log_msg('warn', 'snapshot: cannot create shared directory '.quot($d));
+				}
+				umask($m);
+			}
 			// load the newly created snapshot and give modules a chance to 
 			// copy referenced files as well
 			$dest_name = $a[0].'.'.$args['rev'].'.'.$f;
