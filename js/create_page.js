@@ -10,6 +10,8 @@
 $(document).ready(function() {
 	$('#create_page_btn').bind('click', function(e) {
 		$('#create_page_btn').attr('disabled', 'disabled');
+		// prevent spaces in urls
+		$.glue.page = $.glue.page.split(' ').join('-');
 		$.glue.backend({ method: 'glue.create_page', page: $.glue.page }, function(data) {
 			var page_short = $.glue.page;
 			var q_mark = $.glue.q;
