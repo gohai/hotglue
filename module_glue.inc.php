@@ -689,16 +689,11 @@ function object_remove_attr($args)
 		return response('Required argument "attr" missing', 400);
 	}
 
-	// DEBUG
-	if (empty($args['name'])) {
-		log_msg('error', 'unable to lock: '.print_r($args, true));
-		return response(true);
-	}
-
 	// LOCK
 	// TODO (later): $args['name'] might not be set
 	$_l = _obj_lock($args['name'], LOCK_TIME);
 	if ($_l === false) {
+		// DEBUG
 		//return response('Could not acquire lock to '.quot($args['name']).' in '.LOCK_TIME.'ms', 500);
 		log_msg('error', 'Could not acquire lock to '.quot($args['name']).' in '.LOCK_TIME.'ms');
 	}
@@ -1166,15 +1161,10 @@ function save_state($args)
 		return response('Error saving state as object does not exist', 404);
 	}
 
-	// DEBUG
-	if (is_null(elem_attr($elem, 'id'))) {
-		log_msg('error', 'unable to lock: '.print_r($args, true));
-		return response(true);
-	}
-
 	// LOCK
 	$L = _obj_lock(elem_attr($elem, 'id'), LOCK_TIME);
 	if ($L === false) {
+		// DEBUG
 		//return response('Could not acquire lock to '.quot(elem_attr($elem, 'id')).' in '.LOCK_TIME.'ms', 500);
 		log_msg('error', 'Could not acquire lock to '.quot(elem_attr($elem, 'id')).' in '.LOCK_TIME.'ms');
 	}
