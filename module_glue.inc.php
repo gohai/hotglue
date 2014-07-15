@@ -58,7 +58,7 @@ function _obj_lock($name, $wait = true)
 		return true;
 	}
 	
-	$start = intval(microtime(true)*1000.0);
+	$start = microtime(true);
 	$fn = CONTENT_DIR.'/'.str_replace('.', '/', $name);
 	// resolve symlinks
 	if (@is_link($fn)) {
@@ -86,9 +86,10 @@ function _obj_lock($name, $wait = true)
 			// give up right away
 			log_msg('debug', 'lock: could not acquire lock');
 			return false;
-		} elseif (is_int($wait) && $wait < abs(intval(microtime(true)*1000.0)-$start)) {
+		} elseif (is_int($wait) && $wait/1000.0 < microtime(true)-$start) {
 			// timeout
-			log_msg('debug', 'lock: could not acquire lock in '.$wait.'ms');
+			// DEBUG
+			log_msg('warn', 'lock: could not acquire lock in '.(microtime(true)-$start).' sec ('.print_r(error_get_last(), true).')');
 			return false;
 		}
 		// sleep for a tenth of a second (not sure if this works)
