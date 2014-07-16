@@ -70,6 +70,8 @@ function _obj_lock($name, $wait = true)
 		}
 		log_msg('debug', 'lock: resolved '.$name.' -> '.$fn);
 	}
+	// DEBUG
+	log_msg('warn', 'lock: acquiring lock for '.$name);
 	do {
 		$f = @fopen($fn, 'rb');
 		if ($f === false) {
@@ -80,20 +82,19 @@ function _obj_lock($name, $wait = true)
 		// try to acquire lock
 		if (@flock($f, LOCK_EX|LOCK_NB)) {
 			// success
-			log_msg('debug', 'lock: acquired lock for '.$name);
-			return $f;
+			log_msg('warn', 'lock: acquired lock for '.$name);
+			return array('fn' => $name, 'handle' => $f);
 		} elseif ($wait === false) {
 			// give up right away
 			log_msg('debug', 'lock: could not acquire lock');
 			return false;
 		} elseif (is_int($wait) && $wait/1000.0 < microtime(true)-$start) {
 			// timeout
-			// DEBUG
-			log_msg('warn', 'lock: could not acquire lock in '.(microtime(true)-$start).' sec ('.print_r(error_get_last(), true).')');
+			log_msg('debug', 'lock: could not acquire lock in '.(microtime(true)-$start).' sec');
 			return false;
 		}
-		// sleep for a tenth of a second (not sure if this works)
-		usleep(100000);
+		// sleep for half a second (not sure if this works)
+		usleep(500000);
 	} while (true);
 }
 
@@ -111,10 +112,11 @@ function _obj_unlock($f)
 		return;
 	}
 	
-	if ($f) {
-		@flock($f, LOCK_UN);
-		log_msg('debug', 'lock: released lock');
-		@fclose($f);
+	if (is_array($f)) {
+		log_msg('warn', 'lock: releasing lock for '.$f['fn']);
+		@flock($f['handle'], LOCK_UN);
+		log_msg('warn', 'lock: released lock for '.$f['fn']);
+		@fclose($f['handle']);
 	}
 }
 
@@ -691,16 +693,15 @@ function object_remove_attr($args)
 
 	// LOCK
 	// TODO (later): $args['name'] might not be set
-	$_l = _obj_lock($args['name'], LOCK_TIME);
-	if ($_l === false) {
-		// DEBUG
-		//return response('Could not acquire lock to '.quot($args['name']).' in '.LOCK_TIME.'ms', 500);
+	$L = _obj_lock($args['name'], LOCK_TIME);
+	if ($L === false) {
 		log_msg('error', 'Could not acquire lock to '.quot($args['name']).' in '.LOCK_TIME.'ms');
+		// but continue
 	}
 	$obj = load_object($args);
 	if ($obj['#error']) {
 		// UNLOCK
-		_obj_unlock($_l);
+		_obj_unlock($L);
 		return $obj;
 	} else {
 		$obj = $obj['#data'];
@@ -718,13 +719,13 @@ function object_remove_attr($args)
 		}
 	} else {
 		// UNLOCK
-		_obj_unlock($_l);
+		_obj_unlock($L);
 		return response('Argument "attr" need to be either array or string', 400);
 	}
 	
 	$ret = save_object($obj);
 	// UNLOCK
-	_obj_unlock($_l);
+	_obj_unlock($L);
 	return $ret;
 }
 
@@ -1164,9 +1165,8 @@ function save_state($args)
 	// LOCK
 	$L = _obj_lock(elem_attr($elem, 'id'), LOCK_TIME);
 	if ($L === false) {
-		// DEBUG
-		//return response('Could not acquire lock to '.quot(elem_attr($elem, 'id')).' in '.LOCK_TIME.'ms', 500);
 		log_msg('error', 'Could not acquire lock to '.quot(elem_attr($elem, 'id')).' in '.LOCK_TIME.'ms');
+		// but continue
 	}
 	$obj = load_object(array('name'=>elem_attr($elem, 'id')));
 	if ($obj['#error']) {
@@ -1351,7 +1351,8 @@ function update_object($args)
 	// the object need not exist, so we're not checking against 
 	// $L being NULL here
 	if ($L === false) {
-		return response('Could not acquire lock to '.quot($args['name']).' in '.LOCK_TIME.'ms', 500);
+		log_msg('error', 'Could not acquire lock to '.quot($args['name']).' in '.LOCK_TIME.'ms');
+		// but continue
 	}
 	$old = load_object($args);
 	if ($old['#error']) {
