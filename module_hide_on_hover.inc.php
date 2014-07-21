@@ -46,7 +46,15 @@ function hide_on_hover_alter_render_late($args)
 			// add a global event handler
 			$script = '<script type="text/javascript">'.nl();
 			$script .= tab().'$(document).ready(function() {'.nl();
-			$script .= tab(2).'$(document).bind(\'mousemove\', function(e) { var d = $(\'#'.str_replace('.', '\\\\.', $obj['name']).'\'); var o = d.offset(); if (o.left <= e.pageX && e.pageX <= o.left+d.outerWidth() && o.top <= e.pageY && e.pageY <= o.top+d.outerHeight()) { d.css(\'visibility\', \'hidden\'); } else { d.css(\'visibility\', \'visible\') }; });'.nl();
+			$script .= tab(2).'$(document).bind(\'mousemove\', function(e) {'.nl();
+			$script .= tab(3).'var obj = $(\'#'.str_replace('.', '\\\\.', $obj['name']).'\');'.nl();
+			$script .= tab(3).'var o = obj.offset();'.nl();
+			$script .= tab(3).'if (o.left <= e.pageX && e.pageX <= o.left+obj.outerWidth() && o.top <= e.pageY && e.pageY <= o.top+obj.outerHeight()) {'.nl();
+			$script .= tab(4).'obj.css(\'visibility\', \'hidden\');'.nl();
+			$script .= tab(3).'} else {'.nl();
+			$script .= tab(4).'obj.css(\'visibility\', \'visible\');'.nl();
+			$script .= tab(3).'}'.nl();
+			$script .= tab(2).'});'.nl();
 			$script .= tab().'});'.nl();
 			$script .= '</script>'.nl();
 			$html = $html.$script;
