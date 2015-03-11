@@ -525,12 +525,13 @@ function serve_file($fn, $dl, $mime = '')
 	// TODO (later): handle byte range
 	// TODO (later): handle if-modified-since etc
 	// TODO (later): also check apache_request_headers()
+	// TODO (later): send max-age
 	
 	if ($dl) {
 		// these are taken from the php documentation (on readfile())
 		header('Content-Description: File Transfer');
 		header('Content-Type: application/octet-stream');
-		header('Content-Disposition: attachment; filename='.basename($fn));
+		header('Content-Disposition: attachment; filename="'.basename($fn).'"');
 		header('Content-Transfer-Encoding: binary');
 	} else {
 		header('Content-Type: '.$mime);
