@@ -4,14 +4,10 @@
 	width: 480px;
 }
 
-.glue-webvideo-handle {
-	/* that's the handle displayed above webvideo objects */
-	background-image: url(webvideo-handle.png);
-	height: 20px;
-	left: -20px;
-	position: relative;
-	top: -20px;
-	width: 20px;
+.glue-webvideo-shield {
+	/* this is the dummy object we place over the iframe for editing */
+	background-color: darkgrey;
+	opacity: 0.5;
 }
 
 #glue-contextmenu-webvideo-autoplay {

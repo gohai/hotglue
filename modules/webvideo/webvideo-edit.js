@@ -64,9 +64,9 @@ $(document).ready(function() {
 				}
 				$(elem).append(child);
 				// put the iframe behind some shield for editing
-				child = $('<div class="glue-webvideo-handle glue-ui" title="drag here"></div>');
+				child = $('<div class="glue-webvideo-shield glue-ui" style="height: 100%; position: absolute; width: 100%;" title="visitors will be able to interact with the webpage below"></div>');
 				$(elem).append(child);
-				$('body').append(elem);				
+				$('body').append(elem);
 				// make width and height explicit
 				$(elem).css('width', $(elem).width()+'px');
 				$(elem).css('height', $(elem).height()+'px');
@@ -174,6 +174,6 @@ $(document).ready(function() {
 	// make sure we don't send to much over the wire for every save
 	$.glue.object.register_alter_pre_save('iframe', function(obj, orig) {
 		$(obj).children('iframe').html('');
-		$(obj).children('.glue-webvideo-handle').remove();
+		$(obj).children('.glue-webvideo-shield').remove();
 	});
 });

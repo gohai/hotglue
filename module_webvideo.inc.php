@@ -62,12 +62,15 @@ function webvideo_alter_render_early($args)
 	elem_append($elem, $i);
 	
 	if ($args['edit']) {
-		// add handle as well
-		$h = elem('div');
-		elem_add_class($h, 'glue-webvideo-handle');
-		elem_add_class($h, 'glue-ui');
-		elem_attr($h, 'title', 'drag here');
-		elem_append($elem, $h);
+		// add shield as well
+		$s = elem('div');
+		elem_add_class($s, 'glue-webvideo-shield');
+		elem_add_class($s, 'glue-ui');
+		elem_css($s, 'height', '100%');
+		elem_css($s, 'position', 'absolute');
+		elem_css($s, 'width', '100%');
+		elem_attr($s, 'title', 'visitors will be able to interact with the webpage below');
+		elem_append($elem, $s);
 	}
 	
 	return true;
