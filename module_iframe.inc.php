@@ -14,6 +14,7 @@ require_once('html.inc.php');
 require_once('html_parse.inc.php');
 require_once('modules.inc.php');
 // module glue gets loaded on demand
+require_once('util.inc.php');
 
 
 // module_image.inc.php has more information on what's going on inside modules 
@@ -157,7 +158,7 @@ function iframe_save_state($args)
 {
 	$elem = $args['elem'];
 	$obj = $args['obj'];
-	if (@array_shift(elem_classes($elem)) != 'iframe') {
+	if (get_first_item(elem_classes($elem)) != 'iframe') {
 		return false;
 	}
 	

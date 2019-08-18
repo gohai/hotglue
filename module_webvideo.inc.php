@@ -12,6 +12,7 @@
 @require_once('config.inc.php');
 require_once('html.inc.php');
 require_once('modules.inc.php');
+require_once('util.inc.php');
 
 
 function webvideo_alter_render_early($args)
@@ -116,7 +117,7 @@ function webvideo_save_state($args)
 {
 	$elem = $args['elem'];
 	$obj = $args['obj'];
-	if (@array_shift(elem_classes($elem)) != 'webvideo') {
+	if (get_first_item(elem_classes($elem)) != 'webvideo') {
 		return false;
 	}
 	

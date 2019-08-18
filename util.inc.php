@@ -253,6 +253,19 @@ function filext($s)
 
 
 /**
+ *	select the first item of an array
+ *
+ *	@param array $array input array
+ *	@return mixed (NULL if none)
+ */
+function get_first_item($array) {
+	foreach ($array as $item) {
+		return $item;
+	}
+}
+
+
+/**
  *	return a http error message to the client
  *
  *	if $header_only is false (the default), the function doesn't 
