@@ -1425,16 +1425,16 @@ function upload_files($args)
 		if ($s === false) {
 			$r = invoke_hook_while('upload', false, $args);
 			if (count($r) == 1) {
-				$s = array_pop(array_values($r));
-				log_msg('info', 'upload_object: '.quot($fn).' was handled by '.quot(array_pop(array_keys($r))));
+				$s = get_last_item(array_values($r));
+				log_msg('info', 'upload_object: '.quot($fn).' was handled by '.quot(get_last_item(array_keys($r))));
 			}
 		}
 		// check fallback hook last
 		if ($s === false) {
 			$r = invoke_hook_while('upload_fallback', false, $args);
 			if (count($r) == 1) {
-				$s = array_pop(array_values($r));
-				log_msg('info', 'upload_object: '.quot($fn).' was (fallback-) handled by '.quot(array_pop(array_keys($r))));
+				$s = get_last_item(array_values($r));
+				log_msg('info', 'upload_object: '.quot($fn).' was (fallback-) handled by '.quot(get_last_item(array_keys($r))));
 			}
 		}
 		

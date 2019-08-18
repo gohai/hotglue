@@ -82,7 +82,7 @@ function page_delete_page($args)
 function page_has_reference($args)
 {
 	$obj = $args['obj'];
-	if (array_pop(expl('.', $obj['name'])) != 'page') {
+	if (get_last_item(expl('.', $obj['name'])) != 'page') {
 		return false;
 	}
 	
@@ -210,7 +210,7 @@ function page_render_page_early($args)
 function page_serve_resource($args)
 {
 	$obj = $args['obj'];
-	if (array_pop(expl('.', $obj['name'])) != 'page') {
+	if (get_last_item(expl('.', $obj['name'])) != 'page') {
 		return false;
 	}
 	$pn = get_first_item(expl('.', $obj['name']));

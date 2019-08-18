@@ -39,7 +39,7 @@ function download_alter_render_early($args)
 	if (1 < count($a)) {
 		$v = elem('div');
 		elem_add_class($v, 'download-ext');
-		elem_val($v, htmlspecialchars(array_pop($a), ENT_NOQUOTES, 'UTF-8'));
+		elem_val($v, htmlspecialchars(get_last_item($a), ENT_NOQUOTES, 'UTF-8'));
 		elem_append($elem, $v);
 	}
 	

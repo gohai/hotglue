@@ -245,7 +245,7 @@ function filext($s)
 {
 	$a = expl('.', $s);
 	if (1 < count($a)) {
-		return(array_pop($a));
+		return(get_last_item($a));
 	} else {
 		return '';
 	}
@@ -262,6 +262,21 @@ function get_first_item($array) {
 	foreach ($array as $item) {
 		return $item;
 	}
+}
+
+
+/**
+ *	select the last item of an array
+ *
+ *	@param array $array input array
+ *	@return mixed (NULL if none)
+ */
+function get_last_item($array) {
+	$last = NULL;
+	foreach ($array as $item) {
+		$last = $item;
+	}
+	return $last;
 }
 
 
