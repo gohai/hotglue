@@ -16,6 +16,7 @@
 }
 
 #glue-contextmenu-iframe-scroll.glue-menu-disabled {
+	/* XXX: these files don't exist */
 	background-image: url(iframe-scroll-off.png);
 }
 
