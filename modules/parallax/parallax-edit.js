@@ -9,7 +9,7 @@ $(document).ready(function() {
 				old_val = data['parallax-x'];
 			}
 			var x = prompt('Enter parallax formula for x (e.g. 0.5*x)', old_val);
-			if (x === null) {
+			if (x === null || x === false) {
 				return;
 			}
 
@@ -18,7 +18,7 @@ $(document).ready(function() {
 				old_val = data['parallax-y'];
 			}
 			var y = prompt('Enter parallax formula for y (e.g. 0.5*y)', old_val);
-			if (y === null) {
+			if (y === null || y === false) {
 				return;
 			}
 

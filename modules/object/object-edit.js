@@ -110,7 +110,7 @@ $(document).ready(function() {
 					old_link = data['#data']['object-link'];
 				}
 				var link = prompt('Enter the name of the page you want to link to (e.g. anotherpage). You can also enter a full URL (e.g. http://disney.com/) or the name of another object on this page (with a prefixed hash symbol, e.g. #someobject).', old_link);
-				if (link === null || link == old_link) {
+				if (link === null || link === false || link == old_link) {
 					return;
 				}
 				if (link == '') {

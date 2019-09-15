@@ -39,10 +39,10 @@ $(document).ready(function() {
 		var old = $(entry).attr('id');
 		var pn = prompt('Change the page URL', old);
 		// prevent spaces in urls
-		if (pn != null) {
+		if (pn !== null && pn !== false) {
 			pn = pn.split(' ').join('-');
 		}
-		if (pn != null && pn != old) {
+		if (pn !== null && pn !== false && pn != old) {
 			$.glue.backend({ method: 'glue.rename_page', 'old': old, 'new': pn }, function(data) {
 				$(entry).attr('id', pn);
 				$(entry).children('.page_browser_pagename').html('<a href="'+$.glue.base_url+'?'+pn+'">'+pn+'</a>');

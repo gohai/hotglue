@@ -27,7 +27,7 @@ $(document).ready(function() {
 	$(elem).bind('click', function(e) {
 		var title = $('title').html();
 		title = prompt('Change the page title', title);
-		if (title === null) {
+		if (title === null || title === false) {
 			return;
 		}
 		$('title').html(title);
@@ -40,10 +40,10 @@ $(document).ready(function() {
 		var old_pn = $.glue.page.split('.').shift();
 		var new_pn = prompt('Change the page URL', old_pn);
 		// prevent spaces in urls
-		if (new_pn != null) {
+		if (new_pn !== null && new_pn !== false) {
 			new_pn = new_pn.split(' ').join('-');
 		}
-		if (new_pn != null && new_pn != old_pn) {
+		if (new_pn !== null && new_pn !== false && new_pn != old_pn) {
 			// check if the current page is also the starting page
 			$.glue.backend({ method: 'glue.get_startpage' }, function(data) {
 				var is_startpage = false;
@@ -109,7 +109,7 @@ $(document).ready(function() {
 	$(elem).bind('click', function(e) {
 		$.glue.menu.hide();
 		var pn = prompt('Name the page to be created');
-		if (pn === null) {
+		if (!pn) {
 			return;
 		}
 		// prevent spaces in urls
@@ -345,7 +345,7 @@ $(document).ready(function() {
 			old_val = '';
 		}
 		var val = prompt('Set content width (e.g. 1000px, leave empty to disable)', old_val);
-		if (val !== null && val !== old_val) {
+		if (val !== null && val !== false && val != old_val) {
 			if (val == '') {
 				$('#glue-page-mask').remove();
 				$.glue.backend({ method: 'glue.object_remove_attr', name: $.glue.page+'.page', attr: 'page-width' });
