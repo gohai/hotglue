@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>List of Pages</title>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/css/reset.css">
+<link rel="stylesheet" type="text/css" href="/css/main.css">
+<link rel="stylesheet" type="text/css" href="/css/glue.css">
+<link rel="stylesheet" type="text/css" href="/modules/page_browser/page_browser.css">
+<script type="text/javascript" src="/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="/js/glue-dat.js"></script>
+<script type="text/javascript" src="/modules/page_browser/page_browser.js"></script>
+<script type="text/javascript">
+	var $ = $ || {};
+	$.glue = $.glue || {};
+	$.glue.base_url = "\/";
+	$.glue.conf = $.glue.conf || {};
+	$.glue.conf.page = $.glue.conf.page || {};
+	$.glue.conf.page.startpage = "start.head";
+	$.glue.conf.show_frontend_errors = true;
+	$.glue.version = [0,0,1];
+
+	$(document).ready(function() {
+		let listPages = async function() {
+			let archive = new DatArchive(window.location);
+			let files = await archive.readdir('/content/');
+			files.sort();
+			for (let i=0; i < files.length; i++) {
+				if (['grid', 'start.head'].includes(files[i])) {
+					continue;
+				}
+				if (files[i].startsWith('.')) {
+					continue;
+				}
+				let id = files[i].split('.');
+				if (id.length < 2) {
+					continue;
+				}
+				$('body').append('<div class="page_browser_entry" id="' + id[0] + '"><span class="page_browser_pagename"><a href="' + $.glue.base_url + '?' + id[0] + '">' + id[0] + '</a></span> ');
+			}
+		};
+
+		listPages();
+	});
+</script>
+</head>
+<body id="pages">
+	<h1>All pages</h1><div class="page_browser_entry_start" id="start"><span class="page_browser_pagename"><a href="/?start">start</a></span> <span id="page_browser_startpage">the start page</span> </div>
+</body>
+</html>

@@ -10,24 +10,20 @@
 $(document).ready(function() {
 	var span = false;
 	
-	$('.page_browser_entry').bind('mouseenter', function(e) {
+	$('.page_browser_entry').live('mouseenter', function(e) {
 		if (span) {
 			$(span).remove();
 		}
 		var html = '<span>';
-		html += '<a href="'+$.glue.base_url+'?'+$(this).attr('id')+'/edit">edit</a> ';
 		html += '<a href="#" class="page_browser_rename">rename</a> ';
 		html += '<a href="#" class="page_browser_delete">delete</a> ';
-		if ($(this).attr('id')+'.head' != $.glue.conf.page.startpage) {
-			html += '<a href="#" class="page_browser_set_startpage">as startpage</a> ';
-		}
 		html += '</span>';
 		
 		span = $(html);
 		$(this).append(span);
 	});
 	
-	$('.page_browser_entry').bind('mouseleave', function(e) {
+	$('.page_browser_entry').live('mouseleave', function(e) {
 		if (span) {
 			$(span).remove();
 			span = false;

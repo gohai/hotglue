@@ -139,7 +139,7 @@ $(document).ready(function() {
 				}
 				// TODO (later): check if all revisions were indeed deleted
 				// redirect to "pages" controller
-				window.location = $.glue.base_url+'?pages';
+				window.location = $.glue.base_url+'pages.html';
 			});
 		}
 		$.glue.menu.hide();
