@@ -74,7 +74,7 @@ $(document).ready(function() {
 		$.glue.backend({ method: 'glue.set_startpage', page: $.glue.page });
 		$.glue.menu.hide();
 	});
-	$.glue.menu.register('page', elem);
+	//$.glue.menu.register('page', elem);
 	
 	elem = $('<img src="'+$.glue.base_url+'img/background-color.png" alt="btn" title="change the background color" width="32" height="32">');
 	$(elem).bind('click', function(e) {
