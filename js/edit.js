@@ -869,7 +869,8 @@ $.glue.object = function()
 			var html = $('<div></div>').html(elem).html();
 			// DEBUG
 			//console.log(html);
-			$.glue.backend({ method: 'glue.save_state', 'html': html });
+			var id = $(obj).attr('id');
+			$.glue.backend({ method: 'glue.save_state', 'html': html, 'name': id });
 		},
 		// obj .. element
 		unregister: function(obj) {
