@@ -157,9 +157,7 @@ $.glue.text = function()
 			// update the textarea's inner html as well (.val() seems to be 
 			// different from .text(), at least with jquery 1.5.2 on chromium 12
 			$(elem).children('.glue-text-input').text($(elem).children('.glue-text-input').val());
-			// update the content on the server
-			// see the comments in $.glue.object.register_alter_pre_save below
-			$.glue.backend({ method: 'glue.update_object', name: $(elem).attr('id'), 'content': $(elem).children('.glue-text-input').val() });
+			$.glue.object.save(elem);
 		}
 	};
 }();
@@ -767,18 +765,5 @@ $(document).ready(function() {
 	$.glue.object.register_alter_pre_save('text', function(obj, orig) {
 		// clear the textarea's background-image that Chrome sends along
 		$(obj).children('.glue-text-input').css('background-image', '');
-		// the textarea's content is automatically not included
-		// we can read it out using 
-		// $(orig).children('.glue-text-input').val()
-		// and even set it using 
-		// $(obj).children('.glue-text-input').get(0).innerHTML
-		// but later on (when turning the element into a string) the content of the 
-		// textarea get's magically encoded
-		// a la:
-		// &lt;a href="asd"&gt;test&lt;/a&gt;
-		// for this reason we update the object's content not through 
-		// $.glue.object.update
-		$(obj).children('.glue-text-input').remove();
-		$(obj).children('.glue-text-render').remove();
 	});
 });
