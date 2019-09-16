@@ -201,5 +201,5 @@ $(document).ready(function() {
 		// initiate download
 		window.location = $.glue.base_url+'?'+$(obj).attr('id')+'&download=1';
 	});
-	$.glue.contextmenu.register('video', 'video-download', elem);
+	//$.glue.contextmenu.register('video', 'video-download', elem);
 });
