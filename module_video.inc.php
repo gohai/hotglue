@@ -62,7 +62,7 @@ function video_alter_save($args)
 		unset($obj['video-controls']);
 	}
 	// volume
-	if (elem_attr($v, 'audio') == 'muted') {
+	if (elem_attr($v, 'muted') !== NULL) {
 		$obj['video-volume'] = '0';
 	} else {
 		unset($obj['video-volume']);
@@ -157,7 +157,7 @@ function video_alter_render_early($args)
 	}
 	// volume
 	if (isset($obj['video-volume']) && $obj['video-volume'] == '0') {
-		elem_attr($v, 'audio', 'muted');
+		elem_attr($v, 'muted', 'muted');
 	}
 	elem_append($elem, $v);
 	

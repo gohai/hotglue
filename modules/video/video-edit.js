@@ -136,12 +136,12 @@ $(document).ready(function() {
 	$(elem).bind('click', function(e) {
 		var obj = $(this).data('owner');
 		var video = $(obj).children('video').first();
-		if ((video).attr('audio') != 'muted') {
-			$(video).attr('audio', 'muted');
+		if (!(video).attr('muted')) {
+			$(video).attr('muted', 'muted');
 			$(this).addClass('glue-menu-enabled');
 			$(this).removeClass('glue-menu-disabled');
 		} else {
-			$(video).removeAttr('audio');
+			$(video).removeAttr('muted');
 			$(this).removeClass('glue-menu-enabled');
 			$(this).addClass('glue-menu-disabled');
 		}
@@ -150,7 +150,7 @@ $(document).ready(function() {
 	$(elem).bind('glue-menu-activate', function(e) {
 		var obj = $(this).data('owner');
 		var video = $(obj).children('video').first();
-		if ((video).attr('audio') == 'muted') {
+		if ((video).attr('muted')) {
 			$('#glue-contextmenu-video-mute').addClass('glue-menu-enabled');
 			$('#glue-contextmenu-video-mute').removeClass('glue-menu-disabled');
 		} else {
