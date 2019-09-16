@@ -20,6 +20,18 @@
 	width: 10px;
 }
 
+#glue-dat-fork-prompt {
+	background-color: yellow;
+	bottom: 20px;
+	position: fixed;
+	right: 20px;
+	width: 200px;
+}
+
+#glue-dat-fork-prompt a {
+	text-decoration: underline;
+}
+
 .glue-colorpicker-transparent-set {
 	/* set when color is set to transparent */
 	border-color: red;

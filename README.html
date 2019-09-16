@@ -1,0 +1,505 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>README</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit inherit; background-repeat: inherit inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) { 
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.701961); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
+.CodeMirror-linenumber { }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit inherit; background-repeat: inherit inherit; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; background-repeat: initial initial; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print { 
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid-page; break-before: avoid-page; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid-page; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; background-position: initial initial; background-repeat: initial initial; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) { 
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; background-position: initial initial; background-repeat: initial initial; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; }
+a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; background-repeat: initial initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom-width: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    padding-bottom: .3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+   padding-bottom: .3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+ .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} 
+</style>
+</head>
+<body class='typora-export' >
+<div  id='write'  class = 'is-mac'><h1><a name="hotglue-on-dat--beaker" class="md-header-anchor"></a><span>Hotglue on Dat &amp; Beaker</span></h1><p><span>This is an experimental version of the </span><a href='http://hotglue.me/'><span>Hotglue</span></a><span> site-building software, made to work on top of the </span><a href='https://www.datprotocol.com/'><span>Dat protocol</span></a><span> and the </span><a href='https://beakerbrowser.com/'><span>Beaker Browser</span></a><span>, by </span><a href='https://twitter.com/mrgohai'><span>@mrgohai</span></a><span>.</span></p><p>&nbsp;</p><h2><a name="how-to-get-started" class="md-header-anchor"></a><span>How to get started</span></h2><ul><li><p><span>Install the </span><a href='https://beakerbrowser.com/install/'><span>latest version of the Beaker browser</span></a><span> on your system. I tested this with version 0.8.8.</span></p></li><li><p><span>Launch the Beaker Browser</span></p></li><li><p><span>Navigate to </span><a href='https://hotglue-dat.sukzessiv.net/'><span>https://hotglue-dat.sukzessiv.net/</span></a><span>. This will redirect you to a site on the Dat protocol.</span></p><p><span>If this fails to work for some reason, you should also be able to download the latest version of this software directly from GitHub using </span><a href='https://github.com/gohai/hotglue/archive/dat.zip'><span>this link</span></a><span>, although the installation steps will differ a bit from how they are described in this document.</span></p></li><li><p><span>Click the link to &quot;fork this archive&quot; in the bottom right corner. This will create an editable copy of the Hotglue sofware on your machine.</span></p></li></ul><p><img src='doc/getting_started1.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>Give your site a more (or less) descriptive name like so.</span></p><p><img src='doc/getting_started2.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>And give the script permission to create a new archive on your behalf.</span></p><p><img src='doc/getting_started3.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>After this is done, the browser will redirect you to your page you just created. You will see the Dat URL in the address bar changed from what it was before to something unique to your fork.</span></p><p><span>Hotglue will ask you if you for your name - this is to tag edits for the revision browser. This is not necessary though, and you can also press &quot;Cancel&quot; if you rather not. (In any case, the information is only stored locally in your archive, which is only accessible to people who you give its Dat URL.)</span></p><p><img src='doc/getting_started4.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>Let&#39;s start working on the site itself!</span></p><p><span>We&#39;re starting with an relaxing empty page... clicking the background brings up the &quot;New Object&quot; menu of Hotglue. Here we can e.g. create new text objects, or upload different images and media files.</span></p><p><img src='doc/getting_started5.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>Let&#39;s create a text object for now. It is the first icon (all UI elements have descriptive tooltips when you hover over them with your mouse).</span></p><p><img src='doc/getting_started6.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>The monochrome square. This is how everything starts in Hotglue. Yours might have a different color, since this gets chosen at random. Building something out of this block is very simple in Hotglue - you can select it, move it, and resize it just as you would expect. Clicking it once will also show its context menu, that reveals additional operations you can perform on the object - such as changing it&#39;s color.</span></p><p><span>Clicking the already selected text box allows you to enter text inside the text object.</span></p><p><img src='doc/getting_started7.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>With Hotglue you don&#39;t need to hit &quot;Save&quot; - your changes are automatically saved into your local directory.</span></p><p><span>To explore how our data is actually stored, let&#39;s open up Beaker&#39;s &quot;Library&quot; from the menu on the right.</span></p><p><img src='doc/getting_started8.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>This shows all your archives on Beaker. (You might have some more already.) Let&#39;s click the archive corresponding to the Hotglue page we just created.</span></p><p><img src='doc/getting_started9.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>When you switch over to the &quot;Settings&quot; page, you can with a toggle at the top whether changes you make should be instantly published (made available) over the network, or whether you want to keep them locally (in a &quot;Preview&quot; mode) before reviewing and publishing them together. For now let&#39;s go with &quot;Preview mode&quot; disabled.</span></p><p><img src='doc/getting_started10.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>By clicking the &quot;Set local folder&quot; button you also see where on your local drive Beaker has saved your Hotglue page. There are no &quot;servers&quot; on Dat - so your page will only accessible as long as your computer is on and the Beaker browser is running (although you can ask other users to also host your content, more on this later).</span></p><p><img src='doc/getting_started11.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>To invite other users to explore your site, share the the </span><em><span>dat://</span></em><span> address of your page, and they will always see the latest version you have published when they open up this address in Beaker. Click the &quot;Share&quot; button to quickly access the </span><em><span>dat://</span></em><span> URL of your new page.</span></p><p><img src='doc/getting_started12.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><h2><a name="sharing-your-dat-url-using-qr-codes" class="md-header-anchor"></a><span>Sharing your Dat URL using QR codes</span></h2><p><span>Another way to quickly share the (somewhat unhandy) address of your page in a decentralized settings is by using QR codes, which can be transmitted either digitally, or in printed form.</span></p><p><span>Our version of Hotglue has an easy way to create such a QR code to link to the current page you are on. To create such a code, click the &quot;New Object&quot; menu on the page you want to add the code to, and click the icon that resembles the look of a QR code (botttom left in the image below).</span></p><p><img src='doc/getting_started13.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>Because of a bug in Hotglue (one of many), you&#39;ll need to reload the page (e.g. by clicking the reload icon in the toolbar) before the QR code appears. You can move and resize it like any other element.</span></p><p><img src='doc/getting_started14.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>At this point you&#39;ll probably add more material to your page. You can click the blue link to to open your page to go back to Hotglue and continue editing. Whenever you come back to Beaker&#39;s &quot;Library&quot;, you&#39;ll see the changes you have made, and you can publish those changes to other users over the network.</span></p><h2><a name="scanning-qr-codes" class="md-header-anchor"></a><span>Scanning QR codes</span></h2><p><span>To scan a QR code pointing to someone&#39;s Hotglue page on the Dat protcol, open the page menu by clicking twice on the background and (again) selecting the icon resembling a QR code in the menu that pops up.</span></p><p><img src='doc/getting_started15.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>This will use your computer&#39;s webcam to look for QR codes, and open the address encoded in any recognizezd tags in a new tab in your browser.</span></p><h2><a name="sharing-your-peers-work" class="md-header-anchor"></a><span>Sharing your peers&#39; work</span></h2><p><span>Besides linking to your peers&#39; Hotglue pages on Dat, you can also help to make their content available all the time, by adding it to your library. (Remember, that that there is no server, so sites are only available when your computer is on the network and Beaker is running by default.)</span></p><p><span>There is a difference between &quot;forking&quot; someone&#39;s page, and merely adding it to your library (&quot;seeding&quot; their page). Forking makes a local copy, and creates a new archive in the process (which will have a different Dat URL) - this will make you the new owner of this content (so you can make edit), but severs all ties with the original archive.</span></p><p><span>Sharing someone&#39;s archive by adding it to your library (&quot;seeding&quot; it), in contrast, will merely make you a distributor of the page, and help to make it accessible at all times. Here no new Dat archive is being created, the Dat URL shares the same, and you are not able to make modifications yourself - but the editor of the archive can continue to make changes, which will be reflected in the copy that you are keeping.</span></p><p><span>You can encourage others to distribute your archive this way, by opening the &quot;New Object&quot; menu, and clicking the icon labeled &quot;ask visitors to re-seed your site&quot; (bottom right in the image below).</span></p><p><img src='doc/getting_started16.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>This will create an icon on your page, which visitor (but not yourself) can click, and which will make the browser ask them if they want to add this archive to their library (which will make them participate in keeping this content online). You can move and resize this element as usual.</span></p><p><img src='doc/getting_started17.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><p><span>Another general way through which you can seed any archive&#39;s files, is by clicking the network icon in the address bar, and toggling the option that reads &quot;Seed this site&#39;s files&quot;.</span></p><p><img src='doc/getting_started18.png' alt='Screenshot' referrerPolicy='no-referrer' /></p><h3><a name="credits" class="md-header-anchor"></a><span>Credits</span></h3><p><span>Author of this experiment: </span><a href='https://twitter.com/mrgohai'><span>Gottfried Haider</span></a></p><p><span>Original Hotglue done in collaboration with </span><a href='https://twitter.com/k0a1a'><span>Danja Vasiliev</span></a><span>, and </span><a href='https://twitter.com/WORM_Rotterdam'><span>WORM Foundation</span></a></p><p><span>Shout out to: Paul Frazee (@pfrazee), Tara Vancil (@taravancil), et al, for the </span><em><span>Beaker Browser</span></em><span> software / the developers working on </span><em><span>Dat</span></em><span> / Jon-Kyle (@jondashkyle) and Jon Gacnik (@jongacnik) for their friendship and conversations on this matter / Sarah Grant (@chootka) et al for the </span><a href='https://twitter.com/radnetworks'><span>Radical Networks</span></a><span> conference and their support / Sarah Friend, Benedict Lau, Garry Ing et al for the </span><a href='https://twitter.com/_ournetworks'><span>Our Networks</span></a><span> conference and their support.</span></p><p><span>Bundled software components: </span><em><span>jQuery</span></em><span> (MIT, BSD and GPL licensed), </span><em><span>jQuery UI</span></em><span> (MIT, GPLv2 licensed), </span><em><span>Farbtastic: JQuery color picker plug-in</span></em><span> (GPL licensed), </span><em><span>jQuery xcolor</span></em><span> (MIT, GPLv2 licensed), </span><em><span>QRCode.js</span></em><span> (MIT licensed), </span><em><span>Instascan</span></em><span> (MIT licensed), </span><em><span>file icon</span></em><span> by gnome-icon-theme (GPL licensed), </span><em><span>seed icon</span></em><span> by monkik (CC-BY licensed)</span></p></div>
+</body>
+</html>

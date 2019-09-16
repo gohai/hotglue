@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>start</title>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/css/reset.css">
+<link rel="stylesheet" type="text/css" href="/css/farbtastic.css">
+<link rel="stylesheet" type="text/css" href="/css/main.css">
+<link rel="stylesheet" type="text/css" href="/css/glue.css">
+<link rel="stylesheet" type="text/css" href="/css/edit.css">
+<link rel="stylesheet" type="text/css" href="/modules/download/download.css">
+<link rel="stylesheet" type="text/css" href="/modules/hide_on_hover/hide_on_hover-edit.css">
+<link rel="stylesheet" type="text/css" href="/modules/iframe/iframe-edit.css">
+<link rel="stylesheet" type="text/css" href="/modules/page/page-edit.css">
+<link rel="stylesheet" type="text/css" href="/modules/text/text-edit.css">
+<link rel="stylesheet" type="text/css" href="/modules/text/text-fonts.css">
+<link rel="stylesheet" type="text/css" href="/modules/video/video-edit.css">
+<link rel="stylesheet" type="text/css" href="/modules/welcome/welcome-edit.css">
+<script type="text/javascript" src="/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-1.8.6.custom.js"></script>
+<script type="text/javascript" src="/js/farbtastic.js"></script>
+<script type="text/javascript" src="/js/jquery.xcolor-1.2.1.js"></script>
+<script type="text/javascript" src="/js/glue-dat.js"></script>
+<script type="text/javascript" src="/js/edit.js"></script>
+<script type="text/javascript" src="/modules/parallax/parallax-edit.js"></script>
+<script type="text/javascript" src="/modules/video/video-edit.js"></script>
+<script type="text/javascript" src="/modules/text/text-edit.js"></script>
+<script type="text/javascript" src="/modules/revisions_browser/revisions_browser-edit.js"></script>
+<script type="text/javascript" src="/modules/image/image-edit.js"></script>
+<script type="text/javascript" src="/modules/page_browser/page_browser-edit.js"></script>
+<script type="text/javascript" src="/modules/page/page-edit.js"></script>
+<script type="text/javascript" src="/modules/object/object-edit.js"></script>
+<script type="text/javascript" src="/modules/iframe/iframe-edit.js"></script>
+<script type="text/javascript" src="/modules/hide_on_hover/hide_on_hover-edit.js"></script>
+<script type="text/javascript" src="/modules/download/download-edit.js"></script>
+<script type="text/javascript" src="/modules/welcome/welcome.js"></script>
+<script type="text/javascript">
+	var $ = $ || {};
+	$.glue = $.glue || {};
+	$.glue.base_url = "\/";
+	$.glue.conf = $.glue.conf || {};
+	$.glue.conf.image = $.glue.conf.image || {};
+	$.glue.conf.image.resizing = true;
+	$.glue.conf.image.upload_resize_larger = "120%";
+	$.glue.conf.image.upload_resize_to = "80%";
+	$.glue.conf.object = $.glue.conf.object || {};
+	$.glue.conf.object.default_colors = ["#2a2c39","#ef4723","#0ac5f4"];
+	$.glue.conf.page = $.glue.conf.page || {};
+	$.glue.conf.page.default_grid_x = 50;
+	$.glue.conf.page.default_grid_y = 50;
+	$.glue.conf.page.guides_x = [];
+	$.glue.conf.page.guides_y = [];
+	$.glue.conf.show_frontend_errors = true;
+	$.glue.conf.text = $.glue.conf.text || {};
+	$.glue.conf.text.auto_br = true;
+	$.glue.page = window.location.search.startsWith("?") ? window.location.search.substring(1) : "start";
+	$.glue.page = ($.glue.page.indexOf(".") != -1) ? $.glue.page : $.glue.page + ".head";
+	$.glue.version = [0,0,1];
+</script>
+</head>
+<body id="start.head" class="page">
+	<!--
+	<div id="welcome-msg">
+		<span id="welcome-first">Welcome to HOTGLUE!</span><br>
+		Your Content Manipulation System is ready to go!
+		<p>A short intro before you start:<br>
+		&#164; To get back to editing mode in the future, add "?edit" to the address in the address bar (i.e.: /<b>?edit</b>)<br>
+		&#164; In editing mode, you can use single and double click to access the menus.<br>
+		&#164; Click the page's background once to open a menu that lets you create new objects, upload files and embed videos (YouTube and Vimeo).<br>
+		&#164; Double-click to open a menu that allows you to change preferences, show a grid, make new pages and more.<br>
+		&#164; Remove "?edit" from the address in the address bar to go to the viewing-only mode of this page.</p>
+		<p>You can find more ideas on how to use HOTGLUE at the <a href="http://hotglue.me/how_basic" target="_blank">"How-to" section of our website</a>!
+		<p>Enjoy!<br>
+		<span id="welcome-light">[This message goes away when you click it]</span></p>
+	</div>
+	-->
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "title": "hotglue-dat",
+  "description": "A simple website built with Hotglue on Dat and the Beaker Browser",
+  "type": [
+    "website",
+    "hotglue-page"
+  ],
+  "experimental": {
+    "apis": [
+      "library"
+    ]
+  }
+}
