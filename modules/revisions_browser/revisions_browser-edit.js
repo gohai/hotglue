@@ -12,7 +12,7 @@ $(document).ready(function() {
 	elem = $('<img src="'+$.glue.base_url+'modules/revisions_browser/revisions_browser.png" alt="btn" title="compare revisions of this page" width="32" height="32">');
 	$(elem).bind('click', function(e) {
 		$.glue.menu.hide();
-		window.location = $.glue.base_url+'?'+$.glue.page+'/revisions';
+		window.location = $.glue.base_url+'revisions.html?'+$.glue.page;
 	});
 	$.glue.menu.register('page', elem, 12);
 });
