@@ -1596,102 +1596,11 @@ $.glue.upload = function()
 		//				error => function called when an error occured
 		//				finish => function called after the upload has completed
 		files: function(files, data, options) {
-			// based on http://www.appelsiini.net/2009/10/html5-drag-and-drop-multiple-file-upload
-			// and jquery-html5-upload
-			if (!data) {
-				data = {};
-			}
-			if (!options) {
-				options = {};
-			}
-			var xhr = new XMLHttpRequest();
-			if (typeof options.progress == 'function') {
-				// this is needed otherwise this is XMLHttpRequestUpload in the 
-				// progress handler
-				xhr.upload['onprogress'] = function(e) {
-					options.progress(e);
-				}
-			}
-			if (typeof options.finish == 'function') {
-				xhr.onload = function(e) {
-					try {
-						options.finish($.parseJSON(e.target.responseText));	
-					} catch (e) {
-						if (typeof options.error == 'function') {
-							options.error(e);
-						}
-					}
-				};
-			}
-			if (typeof options.error == 'function') {
-				xhr.onerror = function(e) {
-					options.error(e);
-				}
-			}
-			xhr.open('POST', $.glue.base_url+'json.php', true);
-			if (window.FormData) {
-				// DEBUG
-				//console.log('upload: using FormData');
-				var f = new FormData();
-				// other parameters
-				for (var key in data) {
-					f.append(key, JSON.stringify(data[key]));
-				}
-				// files
-				for (var i=0; i < files.length; i++) {
-					f.append('user_file'+i, files[i]);
-				}
-				xhr.send(f);
-				if (typeof options.start == 'function') {
-					options.start(files);
-				}
-				return true;
-			} else if (files[0] && files[0].getAsBinary) {
-				// DEBUG
-				//console.log('upload: using getAsBinary');
-				// build RFC2388 string
-				var boundary = '----multipartformboundary'+(new Date).getTime();
-				var builder = '';
-				// other parameters
-				for (var key in data) {
-					builder += '--'+boundary+'\r\n';
-					builder += 'Content-Disposition: form-data; name="'+key+'"'+'\r\n';
-					builder += '\r\n';
-					builder += JSON.stringify(data[key])+'\r\n';
-				}
-				// files
-				for (var i=0; i < files.length; i++) {
-					var file = files[i];
-					builder += '--'+boundary+'\r\n';
-					builder += 'Content-Disposition: form-data; name="user_file'+i+'"';
-					if (file.fileName) {
-						builder += '; filename="'+file.fileName+'"';
-					}
-					builder += '\r\n';
-					if (file.type) {
-						builder += 'Content-Type: '+file.type+'\r\n';
-					} else {
-						builder += 'Content-Type: application/octet-stream'+'\r\n';
-					}
-					builder += '\r\n';
-					builder += file.getAsBinary();
-					builder += '\r\n';
-				}
-				// mark end of request
-				builder += '--'+boundary+'--'+'\r\n';
-				xhr.setRequestHeader('Content-Type', 'multipart/form-data; boundary='+boundary);
-				xhr.sendAsBinary(builder);
-				if (typeof options.start == 'function') {
-					options.start(files);
-				}
-				return true;
-			} else {
-				$.glue.error('Your browser is not supported. Update to a recent version of Firefox or Chrome.');
-				if (typeof options.abort == 'function') {
-					options.abort();
-				}
-				return false;
-			}
+
+			data.files = files;
+			data.options = options;
+			$.glue.backend(data, null);
+
 		},
 		handle_response: function(data, x, y) {
 			if (!data) {
