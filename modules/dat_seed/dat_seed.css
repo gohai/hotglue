@@ -1,0 +1,15 @@
+.dat_seed {
+	/* distributed by monkik from the Noun Project */
+	/* https://thenounproject.com/search/?q=distribute&i=1945492 */
+	background-image: url(dat_seed-icon.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	filter: invert(50%);
+	height: 100px;
+	width: 116.666px;
+}
+
+.dat_seed:hover {
+	filter: none;
+}
