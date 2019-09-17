@@ -36,8 +36,24 @@ $(document).ready(function() {
 	elem = $('<img src="'+$.glue.base_url+'img/download.png" alt="btn" title="download file" width="32" height="32">');
 	$(elem).bind('click', function(e) {
 		var obj = $(this).data('owner');
-		// initite download
-		window.location = $.glue.base_url+'?'+$(obj).attr('id')+'&download=1';
+
+		// largely taken from https://stackoverflow.com/a/19328891/3030124
+		let download = async function() {
+			let a = document.createElement('a');
+			document.body.appendChild(a);
+			a.style = 'display: none';
+			let archive = new DatArchive(window.location);
+			let buf = await archive.readFile('/content/' + $.glue.page + '/' + $(obj).attr('data-fn'), 'binary');
+			let blob = new Blob([buf], {type: $(obj).attr('data-mime')});
+			let url  = URL.createObjectURL(blob);
+			a.href = url;
+			a.download = $(obj).attr('data-orig-fn');
+			a.click();
+			URL.revokeObjectURL(url);
+		};
+
+		// initiate download
+		download();
 	});
 	$.glue.contextmenu.register('download', 'download-download', elem);
 	
@@ -75,10 +91,10 @@ $(document).ready(function() {
 			$.glue.backend({ method: 'glue.update_object', name: $(obj).attr('id'), 'download-public': 'public' });
 		}
 	});
-	$.glue.contextmenu.register('download', 'download-public', elem);
+	//$.glue.contextmenu.register('download', 'download-public', elem);
 	
 	// make sure we don't send to much over the wire for every save
 	$.glue.object.register_alter_pre_save('download', function(obj, orig) {
-		$(obj).children('.download-ext').remove();
+		//$(obj).children('.download-ext').remove();
 	});
 });
