@@ -110,6 +110,7 @@
 
 .glue-ui {
 	/* all ui elements should use this class */
+	image-rendering: pixelated;
 }
 
 .glue-upload-statusbar {
