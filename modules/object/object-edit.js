@@ -133,7 +133,7 @@ $(document).ready(function() {
 	$(elem).bind('click', function(e) {
 		var obj = $(this).data('owner');
 		var name = $(obj).attr('id').split('.').pop();
-		prompt('You can link to this object by copying and pasting this string', '#$page$.'+name);
+		prompt('You can link to this object by copying and pasting this string', 'dat://' + window.location.host + '/' + window.location.search + '#' + name);
 	});
 	$.glue.contextmenu.register('object', 'object-target', elem);
 	
