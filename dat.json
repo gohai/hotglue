@@ -7,7 +7,8 @@
   ],
   "experimental": {
     "apis": [
-      "library"
+      "library",
+      "datPeers"
     ]
   }
 }

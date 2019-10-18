@@ -1,0 +1,23 @@
+.dat_peer_chat {
+	background-color: rgba(255, 255, 255, 0.1);
+	height: 360px;
+	overflow: hidden;
+	min-width: 100px;
+	width: 260px;
+}
+
+.dat_peer_chat .footer {
+	bottom: 15px;
+	left: 15px;
+	position: absolute;
+	width: 100%;
+}
+
+.dat_peer_chat .dat_peer_chat-messages {
+	max-height: calc(100% - 50px);
+	overflow-y: scroll;
+}
+
+.dat_peer_chat .footer input[type=text] {
+	width: calc(100% - 90px);
+}
