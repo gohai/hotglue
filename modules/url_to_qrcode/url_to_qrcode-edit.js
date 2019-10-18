@@ -48,6 +48,9 @@ $(document).ready(function() {
 					$(qrcode_container).remove();
 					$.glue.object.register(elem);
 					$.glue.object.save(elem);
+
+					// automatically reload the page to make the QR code show up for now
+					location.reload();
 				}
 			}, 50);
 
