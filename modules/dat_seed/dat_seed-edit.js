@@ -16,7 +16,7 @@ $(document).ready(function() {
 		// create new object
 		// XXX: can we write to the manifest file?
 		$.glue.backend({ method: 'glue.create_object', 'page': $.glue.page }, function(data) {
-			var elem = $('<div class="dat_seed resizable object" style="position: absolute;" title="click to help distribute this page" onclick="let promptSeed = async function() { try { await experimental.library.requestAdd(window.location.toString()); } catch(e) {} }; promptSeed();"></div>');
+			var elem = $('<div class="dat_seed resizable object" style="position: absolute;" title="click to help distribute this page" onclick="(async function() { try { await experimental.library.requestAdd(window.location.toString()); } catch(e) { if (e.message.includes(\'Archive is owned by user\')) alert(\'Visitors would be prompted to seed your archive when they click this button\'); else console.error(e); } })();"></div>');
 			$(elem).attr('id', data['name']);
 			$('body').append(elem);
 			// make width and height explicit
