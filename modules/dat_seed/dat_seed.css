@@ -1,7 +1,6 @@
 .dat_seed {
-	/* distributed by monkik from the Noun Project */
-	/* https://thenounproject.com/search/?q=distribute&i=1945492 */
-	background-image: url(dat_seed-icon.png);
+	/* icon from Beaker Browser source code */
+	background-image: url(dat_seed-icon.svg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
