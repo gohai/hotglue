@@ -138,11 +138,8 @@ $.glue.text = function()
 			// copy the rendered textarea value
 			$(elem).children('.glue-text-render').html($.glue.text.render_content($(elem).children('.glue-text-input').val(), $(elem).attr('id')));
 			$(elem).removeClass('glue-text-editing');
-			// disable links
-			$(elem).children('.glue-text-render').find('a').bind('click', function(e) {
-				return false;
-			});
-			$(elem).children('.glue-text-render').find('a').attr('title', 'this link is disabled for editing');
+			// open embedded links in a new tab for everyone
+			$(elem).children('.glue-text-render').find('a').attr('target', '_blank');
 			// resolve relative urls
 			$(elem).children('.glue-text-render').find('a').each(function() {
 				// check if scheme is set
@@ -218,12 +215,17 @@ $('.text').live('glue-register', function(e) {
 			e.stopPropagation();
 		}
 	});
-	
-	// disable links
-	$(this).children('.glue-text-render').find('a').bind('click', function(e) {
-		return false;
-	});
-	$(this).children('.glue-text-render').find('a').attr('title', 'this link is disabled for editing');
+
+	// open embedded links in a new tab for the editor, in the same tab for everyone else
+	(async function() {
+		let archive = new DatArchive(window.location);
+		let info = await archive.getInfo();
+		if (info.isOwner) {
+			$(this).children('.glue-text-render').find('a').attr('target', '_blank');
+		} else {
+			$(this).children('.glue-text-render').find('a').attr('target', '');
+		}
+	})();
 });
 
 $('.text').live('glue-deselect', function(e) {
