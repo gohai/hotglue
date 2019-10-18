@@ -29,7 +29,6 @@ $(document).ready(function() {
 			$.glue.object.save(elem);
 		});
 		$.glue.menu.hide();
-		$.glue.menu.hide();
 	});
 	$.glue.menu.register('new', elem, 12);
 });
