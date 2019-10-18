@@ -164,8 +164,7 @@ $(document).ready(function() {
 			} else if (data['#error']) {
 				$.glue.error('There was a problem uploading the file ('+data['#data']+')');
 			} else {
-				// the timestamp here is to trick any caching going on
-				$('html').css('background-image', 'url('+$.glue.base_url+'?'+$.glue.page+'.page&'+(new Date().getTime())+')');
+				$('html').css('background-image', 'url('+data['#data']+')');
 			}
 			$.glue.menu.hide();
 		},

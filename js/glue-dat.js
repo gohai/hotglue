@@ -21,6 +21,8 @@ $.glue.backend = function()
 				for (let property in page) {
 					if (property == 'page-background-color') {
 						$('html').css('background-color', page[property]);
+					} else if (property == 'page-background-image') {
+						$('html').css('background-image', 'url(' + page[property] + ')');
 					} else if (property == 'page-title') {
 						$('title').html(page[property]);
 					} else {
@@ -228,9 +230,13 @@ $.glue.backend = function()
 		} else if (param.method == 'glue.upload_files') {
 			let timestamp = new Date().getTime();
 			let reader = new FileReader();
-			param.options.start();
+			if (param.options.start) {
+				param.options.start();
+			}
 			reader.onload = async function(e) {
-				param.options.progress(e);
+				if (param.options.progress) {
+					param.options.progress(e);
+				}
 				let buffer = e.target.result;
 				// XXX: loop
 				let fn = param.files[0].name.split('.');
@@ -239,6 +245,13 @@ $.glue.backend = function()
 				await archive.writeFile('/content/' + param.page + '/' + timestamp + '.' + ext, buffer);
 				let html;
 				if (['image/gif', 'image/jpeg', 'image/png', 'image/svg+xml'].includes(param.files[0].type)) {
+					// special case for uploading the background image
+					if (param.preferred_module && param.preferred_module == 'page') {
+						updateJsonObject('/content/' + param.page + '/page', { 'page-background-image': '/content/' + param.page + '/' + timestamp + '.' + ext });
+						param.options.finish({'#data': ['/content/' + param.page + '/' + timestamp + '.' + ext]});
+						return;
+					}
+
 					html = '<div id="' + param.page + '.' + timestamp + '" class="image resizable object" style="position: absolute;"><img src="/content/' + param.page + '/' + timestamp + '.' + ext + '"></div>';
 				} else if (['video/mp4', 'video/webm'].includes(param.files[0].type)) {
 					// Beaker seems to have an issue with autplaying videos currently
@@ -256,6 +269,9 @@ $.glue.backend = function()
 			reader.readAsArrayBuffer(param.files[0]);
 		} else if (param.method == 'image.resize') {
 			func({});  // signal no refresh necessary
+		} else if (param.method == 'page.clear_background_img') {
+			removeJsonObjectProperty('/content/' + param.page + '/page', 'page-background-image');
+			// XXX: also delete image file
 		} else if (param.method == 'page.set_grid') {
 			updateJsonObject('/content/grid', param);
 		} else {
